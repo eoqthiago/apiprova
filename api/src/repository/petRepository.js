@@ -4,13 +4,13 @@ import { con } from './connection.js'
 
 
 export async function criarPet(pet) {
-    const comando = `INSERT INTO TB_PET (id_pet, nm_pet)
-    VALUES (?, ?)`
+    const comando = `INSERT INTO TB_PET (nm_pet)
+    VALUES (?)`
 
-    const resposta = await con.query(comando, [pet.id, pet.nome])
+    const [resposta] = await con.query(comando, [pet.nome])
     pet.id = resposta.insertId;
 
-    return pet
+    return pet;
 }
 
 
